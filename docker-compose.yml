@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  asset-service:
+    build: ./asset-server
+    volumes: 
+      - ./asset-server:/usr/src/app
+    ports:
+      - 3000:3000
+  stopapp-service:
+    build: ./vanilla
+    volumes: 
+      - ./vanilla:/usr/src/app2
+    ports:
+      - 8080:8080
+    depends_on:
+      - asset-service    
+
